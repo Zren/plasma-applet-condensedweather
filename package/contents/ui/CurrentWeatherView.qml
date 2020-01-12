@@ -37,6 +37,12 @@ RowLayout {
 			font.pixelSize: currentWeatherView.forecastFontSize
 			elide: Text.ElideRight
 			// wrapMode: Text.Wrap
+
+			PlasmaCore.ToolTipArea {
+				anchors.fill: parent
+				mainText: currentConditionsLabel.text
+				enabled: currentConditionsLabel.truncated
+			}
 		}
 
 		Item {
@@ -56,7 +62,5 @@ RowLayout {
 
 			// Rectangle { border.color: "#ff0"; color: "transparent"; border.width: 1; anchors.fill: parent; }
 		}
-
-		
 	}
 }
