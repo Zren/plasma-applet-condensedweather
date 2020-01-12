@@ -297,8 +297,25 @@ QtObject {
 			})
 		}
 
+		// pressureUnitId: LocaleDefault = 0, Hectopascal = 5008, Kilopascal = 5007, Millibar = 5022, InchesOfMercury = 5028
+		var pressure = getDetailsItemAndUnits("Pressure", "Pressure Unit")
+		if (pressure) {
+			model.push({
+				"label": i18ndc("org.kde.plasma.weather", "@label", "Pressure:"),
+				"text": pressure,
+			})
+		}
 
-		console.log('model', JSON.stringify(model, null, '\t'))
+		// humitity
+		var humidity = getNumber("Humidity")
+		if (humidity !== null) {
+			model.push({
+				"label": i18ndc("org.kde.plasma.weather", "@label", "Humidity:"),
+				"text": percentToDisplayString(humidity),
+			})
+		}
+
+		// console.log('model', JSON.stringify(model, null, '\t'))
 		return model
 	}
 
