@@ -50,6 +50,7 @@ ColumnLayout {
 
                 sourceComponent: PlasmaComponents.Label {
                     Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+                    opacity: 0.6
 
                     text: rowData.label
                 }
