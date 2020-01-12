@@ -7,7 +7,7 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.private.weather 1.0 as WeatherPlugin
 
 QtObject {
-	// readonly property string weatherSource: 'bbcukmet|weather|City of London, Greater London|2643741'
+	readonly property string weatherSource: 'bbcukmet|weather|City of London, Greater London|2643741'
 	// readonly property string weatherSource: 'envcan|weather|Toronto, ON'
 	// readonly property string weatherSource: 'noaa|weather|New York City, Central Park, NY'
 	// readonly property string weatherSource: 'wettercom|weather|London, London, GB|GB0KI0101;London'
@@ -15,7 +15,7 @@ QtObject {
 	// readonly property string weatherSource: 'bbcukmet|weather|Toronto, Canada|6167865' // No Data
 	// readonly property string weatherSource: 'noaa|weather|TORONTO CITY, ON' // No Data
 
-	readonly property string weatherSource: plasmoid.configuration.source
+	// readonly property string weatherSource: plasmoid.configuration.source
 
 	readonly property bool needsConfiguring: !weatherSource
 	readonly property bool hasData: !needsConfiguring && !connectingToSource

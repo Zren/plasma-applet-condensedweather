@@ -107,16 +107,16 @@ RowLayout {
 					// Rectangle { anchors.fill: parent; color: "transparent"; border.width: 1; border.color: "#f00"}
 				}
 
-				RowLayout {
+				ColumnLayout {
 					Layout.alignment: Qt.AlignHCenter
-					spacing: units.smallSpacing
+					spacing: 0
 
 					PlasmaComponents.Label {
 						readonly property var value: modelData.tempHigh
 
 						readonly property bool hasValue: !isNaN(value)
 						text: hasValue ? i18n("%1°", value) : ""
-						visible: hasValue
+						// visible: hasValue
 						font.pointSize: -1
 						font.pixelSize: dailyForecastView.minMaxFontSize
 						font.family: dailyForecastView.fontFamily
@@ -133,7 +133,7 @@ RowLayout {
 
 						readonly property bool hasValue: !isNaN(value)
 						text: hasValue ? i18n("%1°", value) : ""
-						visible: hasValue
+						// visible: hasValue
 						font.pointSize: -1
 						font.pixelSize: dailyForecastView.minMaxFontSize
 						font.family: dailyForecastView.fontFamily

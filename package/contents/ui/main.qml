@@ -18,7 +18,7 @@ Item {
 
 	Plasmoid.fullRepresentation: Item {
 		readonly property bool isDesktopContainment: plasmoid.location == PlasmaCore.Types.Floating
-		Plasmoid.backgroundHints: isDesktopContainment && !plasmoid.configuration.showBackground ? PlasmaCore.Types.NoBackground : PlasmaCore.Types.DefaultBackground
+		// Plasmoid.backgroundHints: isDesktopContainment && !plasmoid.configuration.showBackground ? PlasmaCore.Types.NoBackground : PlasmaCore.Types.DefaultBackground
 
 		property Item contentItem: weatherData.needsConfiguring ? configureButton : forecastLayout
 		implicitWidth: contentItem.implicitWidth
@@ -34,29 +34,76 @@ Item {
 			onClicked: plasmoid.action("configure").trigger()
 		}
 
-		ColumnLayout {
+		RowLayout {
 			id: forecastLayout
 			anchors.fill: parent
 			spacing: units.smallSpacing
+			visible: !weatherData.needsConfiguring
 
-			DailyForecastView {
-				id: dailyForecastView
+			ColumnLayout {
+				RowLayout {
+
+					PlasmaCore.IconItem {
+						id: currentForecastIcon
+						Layout.fillHeight: true
+						// Layout.minimumWidth: currentConditionsColumn.implicitHeight
+						Layout.minimumWidth: height
+						source: weatherData.currentConditionIconName
+						roundToIconSize: false
+
+						// Rectangle { border.color: "#ff0"; color: "transparent"; border.width: 1; anchors.fill: parent; }
+					}
+
+					ColumnLayout {
+						id: currentConditionsColumn
+						spacing: 0
+						Layout.fillHeight: true
+
+						PlasmaComponents.Label {
+							id: currentConditionsLabel
+							text: weatherData.todaysForecastLabel
+							// font.family: currentWeatherView.fontFamily
+							// font.weight: currentWeatherView.fontBold
+							// color: currentWeatherView.textColor
+							// style: currentWeatherView.showOutline ? Text.Outline : Text.Normal
+							// styleColor: currentWeatherView.outlineColor
+						}
+
+						Item {
+							implicitHeight: 60 * units.devicePixelRatio
+							implicitWidth: currentTempLabel.implicitWidth
+
+							PlasmaComponents.Label {
+								id: currentTempLabel
+								anchors.centerIn: parent
+								font.pointSize: -1
+								font.pixelSize: 60 * units.devicePixelRatio
+								readonly property var value: weatherData.currentTemp
+								readonly property bool hasValue: !isNaN(value)
+								text: hasValue ? i18n("%1°", Math.round(value)) : ""
+								// font.family: currentWeatherView.fontFamily
+								// font.weight: currentWeatherView.fontBold
+								// color: currentWeatherView.textColor
+								// style: currentWeatherView.showOutline ? Text.Outline : Text.Normal
+								// styleColor: currentWeatherView.outlineColor
+
+								// Rectangle { border.color: "#f00"; color: "transparent"; border.width: 1; anchors.fill: parent; }
+							}
+
+							// Rectangle { border.color: "#ff0"; color: "transparent"; border.width: 1; anchors.fill: parent; }
+						}
+
+						
+					}
+				}
+
+				DailyForecastView {
+					id: dailyForecastView
+				}
 			}
 
-			NoticesListView {
-				Layout.fillWidth: true
-				model: weatherData.watchesModel
-				readonly property bool showWatches: plasmoid.configuration.showWarnings
-				visible: showWatches && model.length > 0
-				state: "Watches"
-			}
-
-			NoticesListView {
-				Layout.fillWidth: true
-				model: weatherData.warningsModel
-				readonly property bool showWarnings: plasmoid.configuration.showWarnings
-				visible: showWarnings && model.length > 0
-				state: "Warnings"
+			GridLayout {
+				id: detailsView
 			}
 		}
 
