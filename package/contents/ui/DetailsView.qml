@@ -26,6 +26,10 @@ ColumnLayout {
 
 	property var model
 
+	//--- Settings
+	readonly property int detailsFontSize: plasmoid.configuration.detailsFontSize * units.devicePixelRatio
+
+	//--- Layout
 	GridLayout {
 		Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
 
@@ -50,7 +54,7 @@ ColumnLayout {
 
 				sourceComponent: PlasmaComponents.Label {
 					Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-					opacity: 0.6
+					opacity: forecastLayout.fadedOpacity
 
 					text: rowData.label
 				}

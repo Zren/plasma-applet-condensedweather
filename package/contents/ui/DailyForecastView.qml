@@ -9,24 +9,16 @@ import org.kde.plasma.private.weather 1.0 as WeatherPlugin
 RowLayout {
 	id: dailyForecastView
 	spacing: units.smallSpacing
-	opacity: weatherData.hasData ? 1 : 0
-	Behavior on opacity { NumberAnimation { duration: 1000 } }
 
-	readonly property color textColor: plasmoid.configuration.textColor || theme.textColor
-	readonly property color outlineColor: plasmoid.configuration.outlineColor || theme.backgroundColor
-
-	readonly property bool showOutline: plasmoid.configuration.showOutline
-
-	readonly property string fontFamily: plasmoid.configuration.fontFamily || theme.defaultFont.family
-	readonly property var fontBold: plasmoid.configuration.bold ? Font.Bold : Font.Normal
-
+	//--- Settings
 	readonly property int dateFontSize: plasmoid.configuration.dateFontSize * units.devicePixelRatio
 	readonly property int minMaxFontSize: plasmoid.configuration.minMaxFontSize * units.devicePixelRatio
-
-	property alias model: dayRepeater.model
-	readonly property real fadedOpacity: 0.7
+	
 	readonly property int showNumDays: plasmoid.configuration.showNumDays
 	readonly property bool showDailyBackground: plasmoid.configuration.showDailyBackground
+
+	//--- Layout
+	property alias model: dayRepeater.model
 
 	// Note: minItemWidth causes a binding loop
 	readonly property int minItemWidth: {
@@ -81,15 +73,15 @@ RowLayout {
 				PlasmaComponents.Label {
 					text: modelData.dayLabel || ""
 
-					opacity: dailyForecastView.fadedOpacity
+					opacity: forecastLayout.fadedOpacity
 
 					font.pointSize: -1
 					font.pixelSize: dailyForecastView.dateFontSize
-					font.family: dailyForecastView.fontFamily
-					font.weight: dailyForecastView.fontBold
-					color: dailyForecastView.textColor
-					style: dailyForecastView.showOutline ? Text.Outline : Text.Normal
-					styleColor: dailyForecastView.outlineColor
+					font.family: forecastLayout.fontFamily
+					font.weight: forecastLayout.fontBold
+					color: forecastLayout.textColor
+					style: forecastLayout.showOutline ? Text.Outline : Text.Normal
+					styleColor: forecastLayout.outlineColor
 					Layout.alignment: Qt.AlignHCenter
 				}
 
@@ -119,28 +111,28 @@ RowLayout {
 						// visible: hasValue
 						font.pointSize: -1
 						font.pixelSize: dailyForecastView.minMaxFontSize
-						font.family: dailyForecastView.fontFamily
-						font.weight: dailyForecastView.fontBold
-						color: dailyForecastView.textColor
-						style: dailyForecastView.showOutline ? Text.Outline : Text.Normal
-						styleColor: dailyForecastView.outlineColor
+						font.family: forecastLayout.fontFamily
+						font.weight: forecastLayout.fontBold
+						color: forecastLayout.textColor
+						style: forecastLayout.showOutline ? Text.Outline : Text.Normal
+						styleColor: forecastLayout.outlineColor
 						Layout.alignment: Qt.AlignHCenter
 					}
 
 					PlasmaComponents.Label {
 						readonly property var value: modelData.tempLow
-						opacity: dailyForecastView.fadedOpacity
+						opacity: forecastLayout.fadedOpacity
 
 						readonly property bool hasValue: !isNaN(value)
 						text: hasValue ? i18n("%1°", value) : ""
 						// visible: hasValue
 						font.pointSize: -1
 						font.pixelSize: dailyForecastView.minMaxFontSize
-						font.family: dailyForecastView.fontFamily
-						font.weight: dailyForecastView.fontBold
-						color: dailyForecastView.textColor
-						style: dailyForecastView.showOutline ? Text.Outline : Text.Normal
-						styleColor: dailyForecastView.outlineColor
+						font.family: forecastLayout.fontFamily
+						font.weight: forecastLayout.fontBold
+						color: forecastLayout.textColor
+						style: forecastLayout.showOutline ? Text.Outline : Text.Normal
+						styleColor: forecastLayout.outlineColor
 						Layout.alignment: Qt.AlignHCenter
 					}
 				}
