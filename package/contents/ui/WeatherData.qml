@@ -7,8 +7,8 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.private.weather 1.0 as WeatherPlugin
 
 QtObject {
-	readonly property string weatherSource: 'bbcukmet|weather|City of London, Greater London|2643741'
-	// readonly property string weatherSource: 'envcan|weather|Toronto, ON'
+	// readonly property string weatherSource: 'bbcukmet|weather|City of London, Greater London|2643741'
+	readonly property string weatherSource: 'envcan|weather|Toronto, ON'
 	// readonly property string weatherSource: 'noaa|weather|New York City, Central Park, NY'
 	// readonly property string weatherSource: 'wettercom|weather|London, London, GB|GB0KI0101;London'
 
@@ -134,6 +134,15 @@ QtObject {
 			return percent + ' %'
 		}
 	}
+	function valueToDisplayString(displayUnitType, value, valueUnitType, precision) {
+		if (typeof WeatherPlugin["Util"] !== "undefined") {
+			// Plasma 5.13+
+			return WeatherPlugin.Util.valueToDisplayString(displayUnitType, value, valueUnitType, precision)
+		} else {
+			// <= Plasma 5.12
+			return value
+		}
+	}
 
 	property string currentConditionIconName: {
 		var conditionIconName = data["Condition Icon"]
@@ -204,6 +213,69 @@ QtObject {
 	property var warningsModel: parseNoticeList("Warnings", "Warning")
 	property var watchesModel: parseNoticeList("Watches", "Watch")
 
+
+	readonly property int invalidUnit: -1 //TODO: make KUnitConversion::InvalidUnit usable here
+	function getNumber(key) {
+		var number = data[key];
+		if (typeof number === "string") {
+			var parsedNumber = parseFloat(number);
+			return isNaN(parsedNumber) ? null : parsedNumber;
+		}
+		return (typeof number !== "undefined") && (number !== "") ? number : null;
+	}
+	function getNumberOrString(key) {
+		var number = data[key]
+		return (typeof number !== "undefined") && (number !== "") ? number : null
+	}
+	readonly property var detailsModel: {
+		var model = []
+
+		// speedUnitId: LocaleDefault = 0, MeterPerSecond = 9000, KilometerPerHour = 9001, MilePerHour = 9002, Knot = 9005, Beaufort = 9008
+		var reportWindSpeedUnit = data["Wind Speed Unit"] || invalidUnit
+		var displaySpeedUnit = reportWindSpeedUnit
+
+		var windDirection = data["Wind Direction"] || ""
+		var windSpeed = getNumberOrString("Wind Speed")
+		var windSpeedText
+		if (windSpeed !== null && windSpeed !== "") {
+			var windSpeedNumeric = (typeof windSpeed !== 'number') ? parseFloat(windSpeed) : windSpeed
+			if (!isNaN(windSpeedNumeric)) {
+				if (windSpeedNumeric !== 0) {
+					windSpeedText = valueToDisplayString(displaySpeedUnit, windSpeedNumeric, reportWindSpeedUnit, 1)
+					if (windDirection) {
+						windSpeedText = i18ndc("org.kde.plasma.weather", "winddirection windspeed", "%1 %2", windDirection, windSpeedText)
+					}
+				} else {
+					windSpeedText = i18ndc("org.kde.plasma.weather", "Wind condition", "Calm")
+				}
+			} else {
+				// TODO: i18n?
+				windSpeedText = windSpeed
+			}
+			model.push({
+				"label": i18n("Wind:"),
+				"text": windSpeedText,
+			})
+		}
+
+		// visibilityUnitId: LocaleDefault = 0, Kilometer = 2007, Mile = 2024
+		var reportVisibilityUnit = data["Visibility Unit"] || invalidUnit
+		var displayVisibilityUnit = reportVisibilityUnit
+		var visibility = getNumberOrString("Visibility")
+		if (visibility) {
+			if (reportVisibilityUnit !== invalidUnit) {
+				visibility = valueToDisplayString(displayVisibilityUnit, visibility, reportVisibilityUnit, 1)
+			}
+			model.push({
+				"label": i18ndc("org.kde.plasma.weather", "@label", "Visibility:"),
+				"text": visibility,
+			})
+		}
+
+
+		console.log('model', JSON.stringify(model, null, '\t'))
+		return model
+	}
 
 	// property Timer testTimer: Timer {
 	// 	repeat: true

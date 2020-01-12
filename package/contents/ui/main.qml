@@ -102,8 +102,36 @@ Item {
 				}
 			}
 
-			GridLayout {
-				id: detailsView
+			ColumnLayout {
+				Layout.alignment: Qt.AlignTop
+				spacing: units.smallSpacing
+
+				DetailsView {
+					id: detailsView
+					model: weatherData.detailsModel
+				}
+
+				PlasmaComponents.Label {
+					id: updatedAtLabel
+					Layout.fillWidth: true
+
+					readonly property var value: weatherData.data["Observation Timestamp"]
+					readonly property bool hasValue: !value
+					text: {
+						console.log('updatedAtLabel', value)
+						console.log('updatedAtLabel', new Date(value))
+						console.log('updatedAtLabel', Qt.formatTime(new Date(value), Qt.DefaultLocaleShortDate))
+						return hasValue ? Qt.formatTime(new Date(value), Qt.DefaultLocaleShortDate) : ""
+					}
+				}
+
+				PlasmaComponents.Label {
+					id: locationLabel
+					Layout.fillWidth: true
+					readonly property var value: weatherData.data["Place"]
+					readonly property bool hasValue: !value
+					text: weatherData.data["Place"]
+				}
 			}
 		}
 
