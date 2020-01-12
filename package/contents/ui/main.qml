@@ -18,7 +18,7 @@ Item {
 
 	Plasmoid.fullRepresentation: Item {
 		readonly property bool isDesktopContainment: plasmoid.location == PlasmaCore.Types.Floating
-		// Plasmoid.backgroundHints: isDesktopContainment && !plasmoid.configuration.showBackground ? PlasmaCore.Types.NoBackground : PlasmaCore.Types.DefaultBackground
+		Plasmoid.backgroundHints: isDesktopContainment && !plasmoid.configuration.showBackground ? PlasmaCore.Types.NoBackground : PlasmaCore.Types.DefaultBackground
 
 		property Item contentItem: weatherData.needsConfiguring ? configureButton : forecastLayout
 		implicitWidth: contentItem.implicitWidth
@@ -37,7 +37,7 @@ Item {
 		RowLayout {
 			id: forecastLayout
 			anchors.fill: parent
-			spacing: units.smallSpacing
+			spacing: units.largeSpacing
 			visible: !weatherData.needsConfiguring
 
 			ColumnLayout {
@@ -112,25 +112,41 @@ Item {
 				}
 
 				PlasmaComponents.Label {
+					text: ""
+				}
+
+				PlasmaComponents.Label {
 					id: updatedAtLabel
 					Layout.fillWidth: true
-
-					readonly property var value: weatherData.data["Observation Timestamp"]
-					readonly property bool hasValue: !value
+					horizontalAlignment: Text.AlignHCenter
+					readonly property var value: weatherData.oberservationTimestamp
+					readonly property bool hasValue: !!value // && !isNaN(new Date(value))
+					readonly property date valueDate: hasValue ? new Date(value) : new Date()
 					text: {
-						console.log('updatedAtLabel', value)
-						console.log('updatedAtLabel', new Date(value))
-						console.log('updatedAtLabel', Qt.formatTime(new Date(value), Qt.DefaultLocaleShortDate))
-						return hasValue ? Qt.formatTime(new Date(value), Qt.DefaultLocaleShortDate) : ""
+						if (hasValue) {
+							var timestamp = Qt.formatTime(valueDate, Qt.DefaultLocaleShortDate)
+							if (timestamp) {
+								return i18n("Updated at %1", timestamp)
+							} else {
+								return ""
+							}
+						} else {
+							return ""
+						}
 					}
+					opacity: 0.6
+					wrapMode: Text.Wrap
 				}
 
 				PlasmaComponents.Label {
 					id: locationLabel
 					Layout.fillWidth: true
-					readonly property var value: weatherData.data["Place"]
-					readonly property bool hasValue: !value
-					text: weatherData.data["Place"]
+					horizontalAlignment: Text.AlignHCenter
+					readonly property var value: weatherData.location
+					readonly property bool hasValue: !!value
+					text: hasValue ? value : ""
+					opacity: 0.6
+					wrapMode: Text.Wrap
 				}
 			}
 		}

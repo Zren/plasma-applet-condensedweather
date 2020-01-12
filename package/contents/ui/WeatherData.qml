@@ -103,6 +103,13 @@ QtObject {
 		}
 	}
 
+	property string oberservationTimestamp: {
+		return data["Observation Timestamp"] || ""
+	}
+	property string location: {
+		return data["Place"] || ""
+	}
+
 	readonly property var todaysWeather: parseForecast(0) // currentData["Short Forecast Day 0"]
 	readonly property string todaysDayLabel: todaysWeather[0]
 	readonly property string todaysForecastIcon: todaysWeather[1]
@@ -227,8 +234,31 @@ QtObject {
 		var number = data[key]
 		return (typeof number !== "undefined") && (number !== "") ? number : null
 	}
+
+	function getDetailsItemAndUnits(valueKey, reportUnitKey) {
+		var reportUnit = data[reportUnitKey] || invalidUnit
+		var displayUnit = reportUnit // TODO: Check for user locale/configured unit
+		var value = getNumberOrString(valueKey)
+		if (value) {
+			if (reportUnit !== invalidUnit) {
+				value = valueToDisplayString(displayUnit, value, reportUnit, 1)
+			}
+			return value
+		} else {
+			return null
+		}
+	}
 	readonly property var detailsModel: {
 		var model = []
+
+		// windchill
+		var windchill = getDetailsItemAndUnits("Windchill", "Temperature Unit")
+		if (windchill) {
+			model.push({
+				"label": i18ndc("org.kde.plasma.weather", "@label", "Windchill:"),
+				"text": windchill,
+			})
+		}
 
 		// speedUnitId: LocaleDefault = 0, MeterPerSecond = 9000, KilometerPerHour = 9001, MilePerHour = 9002, Knot = 9005, Beaufort = 9008
 		var reportWindSpeedUnit = data["Wind Speed Unit"] || invalidUnit
@@ -259,13 +289,8 @@ QtObject {
 		}
 
 		// visibilityUnitId: LocaleDefault = 0, Kilometer = 2007, Mile = 2024
-		var reportVisibilityUnit = data["Visibility Unit"] || invalidUnit
-		var displayVisibilityUnit = reportVisibilityUnit
-		var visibility = getNumberOrString("Visibility")
+		var visibility = getDetailsItemAndUnits("Visibility", "Visibility Unit")
 		if (visibility) {
-			if (reportVisibilityUnit !== invalidUnit) {
-				visibility = valueToDisplayString(displayVisibilityUnit, visibility, reportVisibilityUnit, 1)
-			}
 			model.push({
 				"label": i18ndc("org.kde.plasma.weather", "@label", "Visibility:"),
 				"text": visibility,
