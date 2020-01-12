@@ -29,6 +29,9 @@
 		<entry name="showWarnings" type="bool">
 			<default>true</default>
 		</entry>
+		<entry name="showDetails" type="bool">
+			<default>true</default>
+		</entry>
 		<entry name="forecastFontSize" type="int">
 			<default>12</default>
 		</entry>

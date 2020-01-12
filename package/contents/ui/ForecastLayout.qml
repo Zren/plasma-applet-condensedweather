@@ -38,6 +38,7 @@ RowLayout {
 
 	DetailsView {
 		id: detailsView
+		visible: plasmoid.configuration.showDetails
 		Layout.alignment: Qt.AlignTop
 		model: weatherData.detailsModel
 	}

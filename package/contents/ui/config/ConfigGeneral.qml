@@ -31,6 +31,11 @@ ConfigPage {
 		}
 
 		ConfigCheckBox {
+			configKey: "showDetails"
+			text: i18n("Show weather details")
+		}
+
+		ConfigCheckBox {
 			configKey: "showWarnings"
 			text: i18n("Show weather warnings")
 		}
