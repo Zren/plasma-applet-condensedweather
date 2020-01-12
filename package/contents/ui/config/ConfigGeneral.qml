@@ -40,10 +40,10 @@ ConfigPage {
 			text: i18n("Desktop Widget: Show background")
 		}
 
-		ConfigCheckBox {
-			configKey: "showDailyBackground"
-			text: i18n("Show background around each day")
-		}
+		// ConfigCheckBox {
+		// 	configKey: "showDailyBackground"
+		// 	text: i18n("Show background around each day")
+		// }
 
 		ConfigSpinBox {
 			id: showNumDays
@@ -89,6 +89,18 @@ ConfigPage {
 		}
 
 		ConfigSpinBox {
+			Kirigami.FormData.label: i18n("Forecast:")
+			configKey: "forecastFontSize"
+			suffix: i18nc("font size suffix", "pt")
+		}
+
+		ConfigSpinBox {
+			Kirigami.FormData.label: i18n("Temp:")
+			configKey: "tempFontSize"
+			suffix: i18nc("font size suffix", "pt")
+		}
+
+		ConfigSpinBox {
 			Kirigami.FormData.label: i18n("Date:")
 			configKey: "dateFontSize"
 			suffix: i18nc("font size suffix", "pt")
@@ -97,6 +109,12 @@ ConfigPage {
 		ConfigSpinBox {
 			Kirigami.FormData.label: i18n("Min/Max Temp:")
 			configKey: "minMaxFontSize"
+			suffix: i18nc("font size suffix", "pt")
+		}
+
+		ConfigSpinBox {
+			Kirigami.FormData.label: i18n("Details:")
+			configKey: "detailsFontSize"
 			suffix: i18nc("font size suffix", "pt")
 		}
 
