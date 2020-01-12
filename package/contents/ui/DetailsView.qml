@@ -127,4 +127,22 @@ ColumnLayout {
 		opacity: 0.6
 		wrapMode: Text.Wrap
 	}
+
+	NoticesListView {
+		Layout.fillWidth: true
+		model: weatherData.watchesModel
+		readonly property bool showWatches: plasmoid.configuration.showWarnings
+		visible: showWatches && model.length > 0
+		state: "Watches"
+		horizontalAlignment: Text.AlignHCenter
+	}
+
+	NoticesListView {
+		Layout.fillWidth: true
+		model: weatherData.warningsModel
+		readonly property bool showWarnings: plasmoid.configuration.showWarnings
+		visible: showWarnings && model.length > 0
+		state: "Warnings"
+		horizontalAlignment: Text.AlignHCenter
+	}
 }

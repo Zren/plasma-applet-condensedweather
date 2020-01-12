@@ -30,18 +30,22 @@ RowLayout {
 		Layout.fillHeight: true
 
 		WLabel {
+			// Layout.minimumWidth: 0
+			Layout.fillWidth: true
 			id: currentConditionsLabel
 			text: weatherData.todaysForecastLabel
 			font.pixelSize: currentWeatherView.forecastFontSize
+			elide: Text.ElideRight
+			// wrapMode: Text.Wrap
 		}
 
 		Item {
-			implicitHeight: 60 * units.devicePixelRatio
+			implicitHeight: currentTempLabel.font.pixelSize
 			implicitWidth: currentTempLabel.implicitWidth
 
 			WLabel {
 				id: currentTempLabel
-				anchors.centerIn: parent
+				anchors.verticalCenter: parent.verticalCenter
 				font.pixelSize: currentWeatherView.tempFontSize
 				readonly property var value: weatherData.currentTemp
 				readonly property bool hasValue: !isNaN(value)

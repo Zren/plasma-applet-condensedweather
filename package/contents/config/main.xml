@@ -27,7 +27,7 @@
 			<default>5</default>
 		</entry>
 		<entry name="showWarnings" type="bool">
-			<default>false</default>
+			<default>true</default>
 		</entry>
 		<entry name="forecastFontSize" type="int">
 			<default>12</default>
