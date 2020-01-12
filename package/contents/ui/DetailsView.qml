@@ -22,64 +22,64 @@ import QtQuick.Layouts 1.3
 import org.kde.plasma.components 3.0 as PlasmaComponents
 
 ColumnLayout {
-    id: root
+	id: root
 
-    property var model
+	property var model
 
-    GridLayout {
-        Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
+	GridLayout {
+		Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
 
-        rowSpacing: units.smallSpacing
+		rowSpacing: units.smallSpacing
 
-        Repeater {
-            id: labelRepeater
+		Repeater {
+			id: labelRepeater
 
-            model: root.model
+			model: root.model
 
-            delegate: Loader {
-                readonly property int rowIndex: index
-                readonly property var rowData: modelData
+			delegate: Loader {
+				readonly property int rowIndex: index
+				readonly property var rowData: modelData
 
-                Layout.minimumWidth: item.Layout.minimumWidth
-                Layout.minimumHeight: item.Layout.minimumHeight
-                Layout.alignment: item.Layout.alignment
-                Layout.preferredWidth: item.Layout.preferredWidth
-                Layout.preferredHeight: item.Layout.preferredHeight
-                Layout.row: rowIndex
-                Layout.column: 0
+				Layout.minimumWidth: item.Layout.minimumWidth
+				Layout.minimumHeight: item.Layout.minimumHeight
+				Layout.alignment: item.Layout.alignment
+				Layout.preferredWidth: item.Layout.preferredWidth
+				Layout.preferredHeight: item.Layout.preferredHeight
+				Layout.row: rowIndex
+				Layout.column: 0
 
-                sourceComponent: PlasmaComponents.Label {
-                    Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-                    opacity: 0.6
+				sourceComponent: PlasmaComponents.Label {
+					Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+					opacity: 0.6
 
-                    text: rowData.label
-                }
-            }
-        }
+					text: rowData.label
+				}
+			}
+		}
 
-        Repeater {
-            id: repeater
+		Repeater {
+			id: repeater
 
-            model: root.model
+			model: root.model
 
-            delegate: Loader {
-                readonly property int rowIndex: index
-                readonly property var rowData: modelData
+			delegate: Loader {
+				readonly property int rowIndex: index
+				readonly property var rowData: modelData
 
-                Layout.minimumWidth: item.Layout.minimumWidth
-                Layout.minimumHeight: item.Layout.minimumHeight
-                Layout.alignment: item.Layout.alignment
-                Layout.preferredWidth: item.Layout.preferredWidth
-                Layout.preferredHeight: item.Layout.preferredHeight
-                Layout.row: rowIndex
-                Layout.column: 1
+				Layout.minimumWidth: item.Layout.minimumWidth
+				Layout.minimumHeight: item.Layout.minimumHeight
+				Layout.alignment: item.Layout.alignment
+				Layout.preferredWidth: item.Layout.preferredWidth
+				Layout.preferredHeight: item.Layout.preferredHeight
+				Layout.row: rowIndex
+				Layout.column: 1
 
-                sourceComponent: PlasmaComponents.Label {
-                    Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+				sourceComponent: PlasmaComponents.Label {
+					Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
 
-                    text: rowData.text
-                }
-            }
-        }
-    }
+					text: rowData.text
+				}
+			}
+		}
+	}
 }
