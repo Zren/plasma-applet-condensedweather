@@ -22,7 +22,8 @@ import QtQuick.Layouts 1.3
 import org.kde.plasma.components 3.0 as PlasmaComponents
 
 ColumnLayout {
-	id: root
+	id: detailsView
+	spacing: units.smallSpacing
 
 	property var model
 
@@ -38,7 +39,7 @@ ColumnLayout {
 		Repeater {
 			id: labelRepeater
 
-			model: root.model
+			model: detailsView.model
 
 			delegate: Loader {
 				readonly property int rowIndex: index
@@ -52,11 +53,13 @@ ColumnLayout {
 				Layout.row: rowIndex
 				Layout.column: 0
 
-				sourceComponent: PlasmaComponents.Label {
+				sourceComponent: WLabel {
 					Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
 					opacity: forecastLayout.fadedOpacity
 
 					text: rowData.label
+
+					font.pixelSize: detailsView.detailsFontSize
 				}
 			}
 		}
@@ -64,7 +67,7 @@ ColumnLayout {
 		Repeater {
 			id: repeater
 
-			model: root.model
+			model: detailsView.model
 
 			delegate: Loader {
 				readonly property int rowIndex: index
@@ -78,20 +81,20 @@ ColumnLayout {
 				Layout.row: rowIndex
 				Layout.column: 1
 
-				sourceComponent: PlasmaComponents.Label {
+				sourceComponent: WLabel {
 					Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
-
 					text: rowData.text
+					font.pixelSize: detailsView.detailsFontSize
 				}
 			}
 		}
 	}
 
-	PlasmaComponents.Label {
+	WLabel {
 		text: ""
 	}
 
-	PlasmaComponents.Label {
+	WLabel {
 		id: updatedAtLabel
 		Layout.fillWidth: true
 		horizontalAlignment: Text.AlignHCenter
@@ -114,7 +117,7 @@ ColumnLayout {
 		wrapMode: Text.Wrap
 	}
 
-	PlasmaComponents.Label {
+	WLabel {
 		id: locationLabel
 		Layout.fillWidth: true
 		horizontalAlignment: Text.AlignHCenter

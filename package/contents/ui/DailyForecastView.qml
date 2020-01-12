@@ -70,18 +70,11 @@ RowLayout {
 				anchors.bottomMargin: frame.margins.bottom
 				spacing: 0
 
-				PlasmaComponents.Label {
+				WLabel {
 					text: modelData.dayLabel || ""
 
 					opacity: forecastLayout.fadedOpacity
-
-					font.pointSize: -1
 					font.pixelSize: dailyForecastView.dateFontSize
-					font.family: forecastLayout.fontFamily
-					font.weight: forecastLayout.fontBold
-					color: forecastLayout.textColor
-					style: forecastLayout.showOutline ? Text.Outline : Text.Normal
-					styleColor: forecastLayout.outlineColor
 					Layout.alignment: Qt.AlignHCenter
 				}
 
@@ -103,36 +96,24 @@ RowLayout {
 					Layout.alignment: Qt.AlignHCenter
 					spacing: 0
 
-					PlasmaComponents.Label {
+					WLabel {
 						readonly property var value: modelData.tempHigh
 
 						readonly property bool hasValue: !isNaN(value)
 						text: hasValue ? i18n("%1°", value) : ""
 						// visible: hasValue
-						font.pointSize: -1
 						font.pixelSize: dailyForecastView.minMaxFontSize
-						font.family: forecastLayout.fontFamily
-						font.weight: forecastLayout.fontBold
-						color: forecastLayout.textColor
-						style: forecastLayout.showOutline ? Text.Outline : Text.Normal
-						styleColor: forecastLayout.outlineColor
 						Layout.alignment: Qt.AlignHCenter
 					}
 
-					PlasmaComponents.Label {
+					WLabel {
 						readonly property var value: modelData.tempLow
 						opacity: forecastLayout.fadedOpacity
 
 						readonly property bool hasValue: !isNaN(value)
 						text: hasValue ? i18n("%1°", value) : ""
 						// visible: hasValue
-						font.pointSize: -1
 						font.pixelSize: dailyForecastView.minMaxFontSize
-						font.family: forecastLayout.fontFamily
-						font.weight: forecastLayout.fontBold
-						color: forecastLayout.textColor
-						style: forecastLayout.showOutline ? Text.Outline : Text.Normal
-						styleColor: forecastLayout.outlineColor
 						Layout.alignment: Qt.AlignHCenter
 					}
 				}

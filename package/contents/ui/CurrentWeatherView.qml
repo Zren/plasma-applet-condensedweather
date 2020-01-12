@@ -17,8 +17,7 @@ RowLayout {
 	PlasmaCore.IconItem {
 		id: currentForecastIcon
 		Layout.fillHeight: true
-		// Layout.minimumWidth: currentConditionsColumn.implicitHeight
-		Layout.minimumWidth: height
+		Layout.minimumWidth: currentConditionsColumn.implicitHeight
 		source: weatherData.currentConditionIconName
 		roundToIconSize: false
 
@@ -30,35 +29,23 @@ RowLayout {
 		spacing: 0
 		Layout.fillHeight: true
 
-		PlasmaComponents.Label {
+		WLabel {
 			id: currentConditionsLabel
 			text: weatherData.todaysForecastLabel
-			font.pointSize: -1
 			font.pixelSize: currentWeatherView.forecastFontSize
-			font.family: forecastLayout.fontFamily
-			font.weight: forecastLayout.fontBold
-			color: forecastLayout.textColor
-			style: forecastLayout.showOutline ? Text.Outline : Text.Normal
-			styleColor: forecastLayout.outlineColor
 		}
 
 		Item {
 			implicitHeight: 60 * units.devicePixelRatio
 			implicitWidth: currentTempLabel.implicitWidth
 
-			PlasmaComponents.Label {
+			WLabel {
 				id: currentTempLabel
 				anchors.centerIn: parent
-				font.pointSize: -1
 				font.pixelSize: currentWeatherView.tempFontSize
 				readonly property var value: weatherData.currentTemp
 				readonly property bool hasValue: !isNaN(value)
 				text: hasValue ? i18n("%1°", Math.round(value)) : ""
-				font.family: forecastLayout.fontFamily
-				font.weight: forecastLayout.fontBold
-				color: forecastLayout.textColor
-				style: forecastLayout.showOutline ? Text.Outline : Text.Normal
-				styleColor: forecastLayout.outlineColor
 
 				// Rectangle { border.color: "#f00"; color: "transparent"; border.width: 1; anchors.fill: parent; }
 			}
