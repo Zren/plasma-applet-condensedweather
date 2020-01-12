@@ -32,6 +32,7 @@ RowLayout {
 		WLabel {
 			// Layout.minimumWidth: 0
 			Layout.fillWidth: true
+			Layout.preferredWidth: 160 * units.devicePixelRatio
 			id: currentConditionsLabel
 			text: weatherData.todaysForecastLabel
 			font.pixelSize: currentWeatherView.forecastFontSize
