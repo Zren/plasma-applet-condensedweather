@@ -86,4 +86,42 @@ ColumnLayout {
 			}
 		}
 	}
+
+	PlasmaComponents.Label {
+		text: ""
+	}
+
+	PlasmaComponents.Label {
+		id: updatedAtLabel
+		Layout.fillWidth: true
+		horizontalAlignment: Text.AlignHCenter
+		readonly property var value: weatherData.oberservationTimestamp
+		readonly property bool hasValue: !!value // && !isNaN(new Date(value))
+		readonly property date valueDate: hasValue ? new Date(value) : new Date()
+		text: {
+			if (hasValue) {
+				var timestamp = Qt.formatTime(valueDate, Qt.DefaultLocaleShortDate)
+				if (timestamp) {
+					return i18n("Updated at %1", timestamp)
+				} else {
+					return ""
+				}
+			} else {
+				return ""
+			}
+		}
+		opacity: 0.6
+		wrapMode: Text.Wrap
+	}
+
+	PlasmaComponents.Label {
+		id: locationLabel
+		Layout.fillWidth: true
+		horizontalAlignment: Text.AlignHCenter
+		readonly property var value: weatherData.location
+		readonly property bool hasValue: !!value
+		text: hasValue ? value : ""
+		opacity: 0.6
+		wrapMode: Text.Wrap
+	}
 }
