@@ -31,13 +31,20 @@ ConfigPage {
 		}
 
 		ConfigCheckBox {
+			id: showDetails
 			configKey: "showDetails"
 			text: i18n("Show weather details")
 		}
 
-		ConfigCheckBox {
-			configKey: "showWarnings"
-			text: i18n("Show weather warnings")
+		RowLayout {
+			Item {
+				implicitWidth: units.largeSpacing
+			}
+			ConfigCheckBox {
+				configKey: "showWarnings"
+				text: i18n("Show weather warnings")
+				enabled: showDetails.checked
+			}
 		}
 
 		ConfigCheckBox {
