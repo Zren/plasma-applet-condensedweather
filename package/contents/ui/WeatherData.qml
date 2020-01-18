@@ -32,7 +32,7 @@ QtObject {
 
 		onConnectedSourcesChanged: {
 			// console.log('onConnectedSourcesChanged', connectedSources)
-			if (weatherSource) {
+			if (weatherSource && !currentData) {
 				connectingToSource = true
 				plasmoid.busy = true
 				connectionTimeoutTimer.start()
