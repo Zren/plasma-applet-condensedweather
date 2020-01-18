@@ -1,5 +1,5 @@
 [Desktop Entry]
-Name=Daily Forecast 2
+Name=Condensed Weather
 Comment=
 
 Type=Service
@@ -11,7 +11,7 @@ X-Plasma-MainScript=ui/main.qml
 
 X-KDE-PluginInfo-Author=Chris Holland
 X-KDE-PluginInfo-Email=zrenfire@gmail.com
-X-KDE-PluginInfo-Name=com.github.zren.dailyforecast2
+X-KDE-PluginInfo-Name=com.github.zren.condensedweather
 X-KDE-PluginInfo-Version=1
 X-KDE-PluginInfo-Website=https://github.com/Zren/plasma-applet-dailyforecast
 X-KDE-PluginInfo-Category=Environment and Weather
