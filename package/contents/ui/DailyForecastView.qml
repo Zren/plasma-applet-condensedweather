@@ -20,7 +20,8 @@ RowLayout {
 	//--- Layout
 	property alias model: dayRepeater.model
 
-	// Note: minItemWidth causes a binding loop
+	// Previously caused a binding loop,
+	// and caused an infinite loop when Qt doesn't break out of it.
 	readonly property int minItemWidth: {
 		var minWidth = 0
 		for (var i = 0; i < dayRepeater.count; i++) {
@@ -34,6 +35,10 @@ RowLayout {
 		}
 		return minWidth
 	}
+
+	// This fixes a binding loop.
+	Layout.minimumWidth: implicitWidth
+	Layout.minimumHeight: implicitHeight
 
 	Repeater {
 		id: dayRepeater
@@ -81,13 +86,13 @@ RowLayout {
 				PlasmaCore.IconItem {
 					Layout.fillWidth: true
 					Layout.fillHeight: true
-					Layout.maximumWidth: dailyForecastView.minItemWidth
-					Layout.maximumHeight: dailyForecastView.minItemWidth
+					readonly property bool hasMinWidth: dailyForecastView.minItemWidth > 0
+					readonly property int iconMaxSize: hasMinWidth ? dailyForecastView.minItemWidth : -1
+					Layout.maximumWidth: iconMaxSize
+					Layout.maximumHeight: iconMaxSize
 					Layout.alignment: Qt.AlignCenter
 					source: modelData.forecastIcon
 					roundToIconSize: false
-					width: parent.width * 1.2
-					height: parent.width * 1.2
 
 					// Rectangle { anchors.fill: parent; color: "transparent"; border.width: 1; border.color: "#f00"}
 				}
