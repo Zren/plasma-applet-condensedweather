@@ -8,14 +8,14 @@ import org.kde.plasma.private.weather 1.0 as WeatherPlugin
 
 QtObject {
 	// readonly property string weatherSource: 'bbcukmet|weather|City of London, Greater London|2643741'
-	readonly property string weatherSource: 'envcan|weather|Toronto, ON'
+	// readonly property string weatherSource: 'envcan|weather|Toronto, ON'
 	// readonly property string weatherSource: 'noaa|weather|New York City, Central Park, NY'
 	// readonly property string weatherSource: 'wettercom|weather|London, London, GB|GB0KI0101;London'
 
 	// readonly property string weatherSource: 'bbcukmet|weather|Toronto, Canada|6167865' // No Data
 	// readonly property string weatherSource: 'noaa|weather|TORONTO CITY, ON' // No Data
 
-	// readonly property string weatherSource: plasmoid.configuration.source
+	readonly property string weatherSource: plasmoid.configuration.source
 
 	readonly property bool needsConfiguring: !weatherSource
 	readonly property bool hasData: !needsConfiguring && !connectingToSource
@@ -255,7 +255,7 @@ QtObject {
 		var windchill = getDetailsItemAndUnits("Windchill", "Temperature Unit")
 		if (windchill) {
 			model.push({
-				"label": i18ndc("org.kde.plasma.weather", "@label", "Windchill:"),
+				"label": i18ndc("plasma_applet_org.kde.plasma.weather", "@label", "Windchill:"),
 				"text": windchill,
 			})
 		}
@@ -273,10 +273,10 @@ QtObject {
 				if (windSpeedNumeric !== 0) {
 					windSpeedText = valueToDisplayString(displaySpeedUnit, windSpeedNumeric, reportWindSpeedUnit, 1)
 					if (windDirection) {
-						windSpeedText = i18ndc("org.kde.plasma.weather", "winddirection windspeed", "%1 %2", windDirection, windSpeedText)
+						windSpeedText = i18ndc("plasma_applet_org.kde.plasma.weather", "winddirection windspeed", "%1 %2", windDirection, windSpeedText)
 					}
 				} else {
-					windSpeedText = i18ndc("org.kde.plasma.weather", "Wind condition", "Calm")
+					windSpeedText = i18ndc("plasma_applet_org.kde.plasma.weather", "Wind condition", "Calm")
 				}
 			} else {
 				// TODO: i18n?
@@ -292,7 +292,7 @@ QtObject {
 		var visibility = getDetailsItemAndUnits("Visibility", "Visibility Unit")
 		if (visibility) {
 			model.push({
-				"label": i18ndc("org.kde.plasma.weather", "@label", "Visibility:"),
+				"label": i18ndc("plasma_applet_org.kde.plasma.weather", "@label", "Visibility:"),
 				"text": visibility,
 			})
 		}
@@ -301,7 +301,7 @@ QtObject {
 		var pressure = getDetailsItemAndUnits("Pressure", "Pressure Unit")
 		if (pressure) {
 			model.push({
-				"label": i18ndc("org.kde.plasma.weather", "@label", "Pressure:"),
+				"label": i18ndc("plasma_applet_org.kde.plasma.weather", "@label", "Pressure:"),
 				"text": pressure,
 			})
 		}
@@ -310,7 +310,7 @@ QtObject {
 		var humidity = getNumber("Humidity")
 		if (humidity !== null) {
 			model.push({
-				"label": i18ndc("org.kde.plasma.weather", "@label", "Humidity:"),
+				"label": i18ndc("plasma_applet_org.kde.plasma.weather", "@label", "Humidity:"),
 				"text": percentToDisplayString(humidity),
 			})
 		}
