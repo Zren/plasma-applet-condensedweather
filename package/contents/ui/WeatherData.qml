@@ -147,7 +147,7 @@ QtObject {
 			return WeatherPlugin.Util.valueToDisplayString(displayUnitType, value, valueUnitType, precision)
 		} else {
 			// <= Plasma 5.12
-			return value
+			return value.toFixed(precision)
 		}
 	}
 
