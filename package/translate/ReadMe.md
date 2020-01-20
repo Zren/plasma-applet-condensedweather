@@ -4,7 +4,7 @@ With KDE Frameworks v5.37 and above, translations are bundled with the `*.plasmo
 
 ## Install Translations
 
-Go to `~/.local/share/plasma/plasmoids/com.github.zren.dailyforecast/translate/` and run `sh ./build --restartplasma`.
+Go to `~/.local/share/plasma/plasmoids/com.github.zren.condensedweather/translate/` and run `sh ./build --restartplasma`.
 
 ## New Translations
 
@@ -33,16 +33,16 @@ Or if you know how to make a pull request
 ## Status
 |  Locale  |  Lines  | % Done|
 |----------|---------|-------|
-| Template |      15 |       |
-| de       |    4/15 |   26% |
-| el       |    4/15 |   26% |
-| es       |   11/15 |   73% |
-| fr       |    4/15 |   26% |
-| id       |    3/15 |   20% |
-| ko       |    3/15 |   20% |
-| nl_NL    |   15/15 |  100% |
-| pl       |    4/15 |   26% |
-| pt_BR    |    7/15 |   46% |
-| ru       |    4/15 |   26% |
-| uk       |    4/15 |   26% |
-| zh_CN    |    4/15 |   26% |
+| Template |      20 |       |
+| de       |    4/20 |   20% |
+| el       |    4/20 |   20% |
+| es       |   11/20 |   55% |
+| fr       |    4/20 |   20% |
+| id       |    3/20 |   15% |
+| ko       |    3/20 |   15% |
+| nl_NL    |   14/20 |   70% |
+| pl       |    4/20 |   20% |
+| pt_BR    |    7/20 |   35% |
+| ru       |    4/20 |   20% |
+| uk       |    4/20 |   20% |
+| zh_CN    |    4/20 |   20% |

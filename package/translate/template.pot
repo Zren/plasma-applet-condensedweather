@@ -1,14 +1,14 @@
-# Translation of dailyforecast in LANGUAGE
-# Copyright (C) 2019
-# This file is distributed under the same license as the dailyforecast package.
+# Translation of condensedweather in LANGUAGE
+# Copyright (C) 2020
+# This file is distributed under the same license as the condensedweather package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: dailyforecast \n"
+"Project-Id-Version: condensedweather \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-dailyforecast\n"
-"POT-Creation-Date: 2019-11-12 11:25-0500\n"
+"POT-Creation-Date: 2020-01-20 12:24-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,15 +22,15 @@ msgid "General"
 msgstr ""
 
 #: ../contents/ui/config/ConfigGeneral.qml
+msgid "Show weather details"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Show weather warnings"
 msgstr ""
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Desktop Widget: Show background"
-msgstr ""
-
-#: ../contents/ui/config/ConfigGeneral.qml
-msgid "Show background around each day"
 msgstr ""
 
 #: ../contents/ui/config/ConfigGeneral.qml
@@ -46,7 +46,7 @@ msgid "Font Family:"
 msgstr ""
 
 #: ../contents/ui/config/ConfigGeneral.qml
-msgid "Date:"
+msgid "Forecast:"
 msgstr ""
 
 #: ../contents/ui/config/ConfigGeneral.qml
@@ -55,7 +55,19 @@ msgid "pt"
 msgstr ""
 
 #: ../contents/ui/config/ConfigGeneral.qml
+msgid "Temp:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Date:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Min/Max Temp:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Details:"
 msgstr ""
 
 #: ../contents/ui/config/ConfigGeneral.qml
@@ -66,8 +78,12 @@ msgstr ""
 msgid "Outline:"
 msgstr ""
 
-#: ../contents/ui/DailyForecastView.qml
+#: ../contents/ui/CurrentWeatherView.qml ../contents/ui/DailyForecastView.qml
 msgid "%1°"
+msgstr ""
+
+#: ../contents/ui/DetailsView.qml
+msgid "Updated at %1"
 msgstr ""
 
 #: ../contents/ui/lib/AppletVersion.qml
@@ -77,4 +93,8 @@ msgstr ""
 #: ../contents/ui/lib/ConfigFontFamily.qml
 msgctxt "Use default font"
 msgid "Default"
+msgstr ""
+
+#: ../contents/ui/WeatherData.qml
+msgid "Wind:"
 msgstr ""
