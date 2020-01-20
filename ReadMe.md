@@ -1,13 +1,12 @@
-# Daily Forecast
+# Condensed Weather
 
-https://store.kde.org/p/1287928/
+https://store.kde.org/p/1353451/
 
 Uses the default KDE weather widget's data sources.
 
-* Can show the desktop widget background individually behind each day.
-* Can display a limited number of days if the data source displays too many. 
+Based on the [Win10 Weather skin for Rainmeter](https://www.deviantart.com/eclectic-tech/art/Win10-Weather-Patch-V3-a-780236969).
 
 ## Screenshots
 
-![](https://i.imgur.com/ljrlh5x.png)
+![](https://i.imgur.com/2mXTwMX.png)
 
