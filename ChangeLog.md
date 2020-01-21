@@ -1,3 +1,7 @@
+## v2 - January 21 2020
+
+* Round details numbers when using Plasma 5.12 (Issue #1)
+
 ## v1 - January 18 2020
 
 * Forked from "Daily Forecast" widget v3.
