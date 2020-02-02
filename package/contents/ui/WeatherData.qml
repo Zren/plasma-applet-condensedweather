@@ -1,4 +1,4 @@
-// Version 6
+// Version 7
 
 import QtQuick 2.0
 import QtQuick.Layouts 1.1
@@ -70,7 +70,8 @@ QtObject {
 			plasmoid.busy = false
 			// TODO: inform user
 			var sourceTokens = weatherSource.split("|")
-			var foo = i18nd("plasma_applet_org.kde.plasma.weather", "Weather information retrieval for %1 timed out.", sourceTokens.value(2))
+			var foo = i18nd("plasma_applet_org.kde.plasma.weather", "Weather information retrieval for %1 timed out.", sourceTokens[2])
+			console.log(plasmoid.pluginName, foo)
 		}
 	}
 
