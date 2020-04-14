@@ -1,4 +1,7 @@
-// Version 7
+// Version 8
+
+// For testing the DataSource, enable the dataengine debug logging with:
+// QT_LOGGING_RULES="kde.dataengine.weather=true" plasmoidviewer ...
 
 import QtQuick 2.0
 import QtQuick.Layouts 1.1
