@@ -6,9 +6,8 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 
 import org.kde.plasma.private.weather 1.0 as WeatherPlugin
 
-RowLayout {
+GridLayout {
 	id: dailyForecastView
-	spacing: units.smallSpacing
 
 	//--- Settings
 	readonly property int dateFontSize: plasmoid.configuration.dateFontSize * units.devicePixelRatio
@@ -17,28 +16,36 @@ RowLayout {
 	readonly property int showNumDays: plasmoid.configuration.showNumDays
 	readonly property bool showDailyBackground: plasmoid.configuration.showDailyBackground
 
+	//---
+	columnSpacing: units.smallSpacing
+	rowSpacing: units.smallSpacing
+
+	// EnvCan has 2 day items for day/night, so we use 2 rows.
+	// Other sources only need 1 row.
+	readonly property int showNumDayItems: {
+		if (weatherData.weatherSourceIsEnvcan) {
+			if (weatherData.dataStartsWithNight) {
+				return showNumDays * 2 - 1
+			} else {
+				return showNumDays * 2
+			}
+		} else {
+			return showNumDays
+		}
+	}
+	rows: weatherData.weatherSourceIsEnvcan ? 2 : 1
+	flow: GridLayout.TopToBottom
+
 	//--- Layout
 	property alias model: dayRepeater.model
 
-	// Previously caused a binding loop,
-	// and caused an infinite loop when Qt doesn't break out of it.
-	readonly property int minItemWidth: {
-		var minWidth = 0
-		for (var i = 0; i < dayRepeater.count; i++) {
-			var item = dayRepeater.itemAt(i)
-			if (!item.visible) {
-				continue
-			}
-			if (i == 0 || item.width < minWidth) {
-				minWidth = item.width
-			}
-		}
-		return minWidth
+	// [EnvCan only] Takes the place of "today" if model starts with "night".
+	Item {
+		id: placeholderDayItem
+		visible: weatherData.dataStartsWithNight
+		Layout.fillWidth: true
+		Layout.fillHeight: true
 	}
-
-	// This fixes a binding loop.
-	Layout.minimumWidth: implicitWidth
-	Layout.minimumHeight: implicitHeight
 
 	Repeater {
 		id: dayRepeater
@@ -50,12 +57,14 @@ RowLayout {
 			implicitHeight: dayItemLayout.implicitHeight + frame.margins.vertical
 			Layout.fillWidth: true
 			Layout.fillHeight: true
+			property alias dayItemIcon: dayItemIcon
+			property alias frame: frame
 
 			visible: {
-				if (dailyForecastView.showNumDays == 0) { // Show all
+				if (dailyForecastView.showNumDayItems == 0) { // Show all
 					return true
 				} else {
-					return (index+1) <= dailyForecastView.showNumDays
+					return (index+1) <= dailyForecastView.showNumDayItems
 				}
 			}
 
@@ -84,12 +93,9 @@ RowLayout {
 				}
 
 				PlasmaCore.IconItem {
+					id: dayItemIcon
 					Layout.fillWidth: true
 					Layout.fillHeight: true
-					readonly property bool hasMinWidth: dailyForecastView.minItemWidth > 0
-					readonly property int iconMaxSize: hasMinWidth ? dailyForecastView.minItemWidth : -1
-					Layout.maximumWidth: iconMaxSize
-					Layout.maximumHeight: iconMaxSize
 					Layout.alignment: Qt.AlignCenter
 					source: modelData.forecastIcon
 					roundToIconSize: false
@@ -106,7 +112,7 @@ RowLayout {
 
 						readonly property bool hasValue: !isNaN(value)
 						text: hasValue ? i18n("%1°", value) : ""
-						// visible: hasValue
+						visible: hasValue
 						font.pixelSize: dailyForecastView.minMaxFontSize
 						Layout.alignment: Qt.AlignHCenter
 					}
@@ -117,7 +123,7 @@ RowLayout {
 
 						readonly property bool hasValue: !isNaN(value)
 						text: hasValue ? i18n("%1°", value) : ""
-						// visible: hasValue
+						visible: hasValue
 						font.pixelSize: dailyForecastView.minMaxFontSize
 						Layout.alignment: Qt.AlignHCenter
 					}

@@ -26,6 +26,18 @@ QtObject {
 
 	property QtObject displayUnits: DisplayUnits { id: displayUnits }
 
+	// EnvCan
+	readonly property bool weatherSourceIsEnvcan: weatherSource.indexOf('envcan|') == 0
+	readonly property bool dataStartsWithNight: {
+		if (weatherSourceIsEnvcan) {
+			// https://github.com/KDE/plasma-workspace/blob/master/dataengines/weather/CMakeLists.txt#L1
+			// https://github.com/KDE/plasma-workspace/blob/master/dataengines/weather/ions/envcan/ion_envcan.cpp#L1580
+			return todaysDayLabel == i18ndc("plasma_engine_weather", "Short for tonight", "nite")
+		} else {
+			return false
+		}
+	}
+
 	readonly property int updateInterval: 30
 	property bool connectingToSource: false
 
