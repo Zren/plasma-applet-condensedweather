@@ -21,10 +21,10 @@ Item {
 		Plasmoid.backgroundHints: isDesktopContainment && !plasmoid.configuration.showBackground ? PlasmaCore.Types.NoBackground : PlasmaCore.Types.DefaultBackground
 
 		property Item contentItem: weatherData.needsConfiguring ? configureButton : forecastLayout
-		implicitWidth: contentItem.implicitWidth
-		implicitHeight: contentItem.implicitHeight
-		Layout.minimumWidth: implicitWidth
-		Layout.minimumHeight: implicitHeight
+		Layout.preferredWidth: 400 * units.devicePixelRatio
+		Layout.preferredHeight: 200 * units.devicePixelRatio
+		width: Layout.preferredWidth
+		height: Layout.preferredHeight
 
 		PlasmaComponents.Button {
 			id: configureButton
@@ -32,6 +32,8 @@ Item {
 			visible: weatherData.needsConfiguring
 			text: i18ndc("plasma_applet_org.kde.plasma.weather", "@action:button", "Configure...")
 			onClicked: plasmoid.action("configure").trigger()
+			Layout.minimumWidth: implicitWidth
+			Layout.minimumHeight: implicitHeight
 		}
 
 		ForecastLayout {
