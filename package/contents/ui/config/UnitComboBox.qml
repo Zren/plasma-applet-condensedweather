@@ -19,4 +19,8 @@ QtControls.ComboBox {
 			}
 		}
 	}
+
+	function populateWith(unitId) {
+		currentIndex = model.listIndexForUnitId(unitId)
+	}
 }
