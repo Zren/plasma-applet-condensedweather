@@ -21,6 +21,8 @@ QtObject {
 	readonly property bool hasData: !needsConfiguring && !connectingToSource
 	readonly property var data: weatherDataSource.currentData || {}
 
+	property QtObject displayUnits: DisplayUnits { id: displayUnits }
+
 	readonly property int updateInterval: 30
 	property bool connectingToSource: false
 
@@ -151,6 +153,17 @@ QtObject {
 			return value.toFixed(precision)
 		}
 	}
+	function temperatureToDisplayString(displayUnitType, value, valueUnitType, rounded, degreesOnly) {
+		if (typeof WeatherPlugin["Util"] !== "undefined") {
+			// Plasma 5.13+
+			// rounded = typeof rounded === 'boolean' ? rounded : false
+			// degreesOnly = typeof degreesOnly === 'boolean' ? degreesOnly : false
+			return WeatherPlugin.Util.temperatureToDisplayString(displayUnitType, value, valueUnitType, rounded, degreesOnly)
+		} else {
+			// <= Plasma 5.12
+			return Math.round(value) + '°'
+		}
+	}
 
 	property string currentConditionIconName: {
 		var conditionIconName = data["Condition Icon"]
@@ -236,9 +249,29 @@ QtObject {
 		return (typeof number !== "undefined") && (number !== "") ? number : null
 	}
 
+	function formatTemp(value, rounded, degreesOnly) {
+		var valueUnitType = data["Temperature Unit"] || invalidUnit
+		var displayUnitType = displayUnits.temperatureUnitId
+		var text = temperatureToDisplayString(displayUnitType, value, valueUnitType, rounded, degreesOnly)
+		if (degreesOnly) {
+			// Remove space between number and degree symbol
+			text = text.replace(' ', '')
+		}
+		return text
+	}
+
 	function getDetailsItemAndUnits(valueKey, reportUnitKey) {
 		var reportUnit = data[reportUnitKey] || invalidUnit
-		var displayUnit = reportUnit // TODO: Check for user locale/configured unit
+		var displayUnit
+		if (reportUnitKey == "Temperature Unit") {
+			displayUnit = displayUnits.temperatureUnitId
+		} else if (reportUnitKey == "Visibility Unit") {
+			displayUnit = displayUnits.visibilityUnitId
+		} else if (reportUnitKey == "Pressure Unit") {
+			displayUnit = displayUnits.pressureUnitId
+		} else {
+			displayUnit = reportUnit
+		}
 		var value = getNumberOrString(valueKey)
 		if (value) {
 			if (reportUnit !== invalidUnit) {
@@ -263,7 +296,7 @@ QtObject {
 
 		// speedUnitId: LocaleDefault = 0, MeterPerSecond = 9000, KilometerPerHour = 9001, MilePerHour = 9002, Knot = 9005, Beaufort = 9008
 		var reportWindSpeedUnit = data["Wind Speed Unit"] || invalidUnit
-		var displaySpeedUnit = reportWindSpeedUnit
+		var displaySpeedUnit = displayUnits.windSpeedUnitId
 
 		var windDirection = data["Wind Direction"] || ""
 		var windSpeed = getNumberOrString("Wind Speed")
