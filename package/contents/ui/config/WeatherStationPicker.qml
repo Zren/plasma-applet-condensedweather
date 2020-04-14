@@ -77,7 +77,7 @@ ColumnLayout {
 				onToggled: {
 					model.checked = checked;
 					checked = Qt.binding(function() { return model.checked; });
-					weatherStationConfigPage.configurationChanged();
+					// weatherStationConfigPage.configurationChanged();
 				}
 			}
 			onObjectAdded: serviceSelectionMenu.insertItem(index, object)
