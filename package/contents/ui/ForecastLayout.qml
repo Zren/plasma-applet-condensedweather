@@ -26,7 +26,8 @@ RowLayout {
 
 	//--- Layout
 	ColumnLayout {
-		
+		spacing: units.smallSpacing
+
 		CurrentWeatherView {
 			id: currentWeatherView
 		}
