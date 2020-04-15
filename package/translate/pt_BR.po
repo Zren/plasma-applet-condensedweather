@@ -91,11 +91,8 @@ msgstr "Padrão"
 
 #: ../contents/ui/main.qml
 msgid "Refresh"
-msgstr ""
+msgstr "Atualizar"
 
 #: ../contents/ui/WeatherData.qml
 msgid "Wind:"
 msgstr ""
-
-#~ msgid "%1°"
-#~ msgstr "%1°"

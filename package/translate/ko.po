@@ -96,6 +96,3 @@ msgstr ""
 #: ../contents/ui/WeatherData.qml
 msgid "Wind:"
 msgstr ""
-
-#~ msgid "%1°"
-#~ msgstr "%1°"
