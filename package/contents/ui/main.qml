@@ -6,6 +6,8 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 
 import org.kde.plasma.private.weather 1.0 as WeatherPlugin
 
+import "./lib/weather"
+
 Item {
 	id: widget
 

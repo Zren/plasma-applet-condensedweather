@@ -11,7 +11,7 @@ ConfigModel {
 	ConfigCategory {
 		name: i18ndc("plasma_applet_org.kde.plasma.weather", "@title", "Units")
 		icon: "preferences-other"
-		source: "config/ConfigUnits.qml"
+		source: "lib/weather/ConfigUnits.qml"
 		visible: typeof WeatherPlugin["Util"] !== "undefined" // Plasma 5.13+
 	}
 }

@@ -1,13 +1,14 @@
+// Version 1
+
 import QtQuick 2.5
 import QtQuick.Controls 2.5 as QtControls
 
 import org.kde.kirigami 2.5 as Kirigami
 import org.kde.plasma.private.weather 1.0 as WeatherPlugin
 
-import ".."
-
 Kirigami.FormLayout {
 
+	property alias displayUnits: displayUnits
 	DisplayUnits { id: displayUnits }
 
 	// Bug: Switching from ConfigUnits to another page will set
@@ -21,7 +22,7 @@ Kirigami.FormLayout {
 		visibilityComboBox.populateWith(displayUnits.visibilityUnitId)
 	}
 
-	UnitComboBox {
+	ConfigUnitComboBox {
 		id: temperatureComboBox
 		configKey: 'temperatureUnitId'
 		Kirigami.FormData.label: i18ndc("plasma_applet_org.kde.plasma.weather", "@label:listbox", "Temperature:")
@@ -31,7 +32,7 @@ Kirigami.FormLayout {
 		}
 	}
 
-	UnitComboBox {
+	ConfigUnitComboBox {
 		id: pressureComboBox
 		configKey: 'pressureUnitId'
 		Kirigami.FormData.label: i18ndc("plasma_applet_org.kde.plasma.weather", "@label:listbox", "Pressure:")
@@ -41,7 +42,7 @@ Kirigami.FormLayout {
 		}
 	}
 
-	UnitComboBox {
+	ConfigUnitComboBox {
 		id: windSpeedComboBox
 		configKey: 'windSpeedUnitId'
 		Kirigami.FormData.label: i18ndc("plasma_applet_org.kde.plasma.weather", "@label:listbox", "Wind speed:")
@@ -51,7 +52,7 @@ Kirigami.FormLayout {
 		}
 	}
 
-	UnitComboBox {
+	ConfigUnitComboBox {
 		id: visibilityComboBox
 		configKey: 'visibilityUnitId'
 		Kirigami.FormData.label: i18ndc("plasma_applet_org.kde.plasma.weather", "@label:listbox", "Visibility:")
