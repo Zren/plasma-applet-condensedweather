@@ -11,7 +11,7 @@ QtObject {
 	//---
 	readonly property int locale_temperatureUnitId: {
 		if (localeUsesMetric) {
-			return 6001 // Celcius
+			return 6001 // Celsius
 		} else {
 			return 6002 // Fahrenheit
 		}

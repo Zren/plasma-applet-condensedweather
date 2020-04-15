@@ -61,7 +61,7 @@
 	<group name="Units">
 		<!-- See https://github.com/KDE/kunitconversion/blob/master/src/unit.h -->
 		<entry name="temperatureUnitId" type="int">
-			<label>LocaleDefault = 0, Kelvin = 6000, Celcius = 6001, Fahrenheit = 6002</label>
+			<label>LocaleDefault = 0, Kelvin = 6000, Celsius = 6001, Fahrenheit = 6002</label>
 			<default>0</default>
 		</entry>
 		<entry name="windSpeedUnitId" type="int">
