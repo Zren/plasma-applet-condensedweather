@@ -193,7 +193,7 @@ QtObject {
 	}
 
 	property var currentTemp: {
-		return data["Temperature"] || NaN
+		return isNaN(data["Temperature"]) ? NaN : data["Temperature"]
 	}
 
 	property var dailyForecastModel: {
