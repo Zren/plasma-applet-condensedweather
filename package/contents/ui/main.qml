@@ -44,8 +44,13 @@ Item {
 
 	}
 
+	function action_refresh() {
+		weatherData.refresh()
+	}
 
 	Component.onCompleted: {
+		plasmoid.setAction("refresh", i18n("Refresh"), "view-refresh")
+
 		// plasmoid.action("configure").trigger()
 	}
 }

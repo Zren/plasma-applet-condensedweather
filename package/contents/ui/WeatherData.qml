@@ -41,6 +41,23 @@ QtObject {
 	readonly property int updateInterval: 30
 	property bool connectingToSource: false
 
+	function refresh() {
+		// console.log(plasmoid.pluginName, 'WeatherData.refresh()')
+		weatherDataSource.disconnectSource(weatherSource)
+		weatherDataSource.removeSource(weatherSource)
+		refreshTimer.restart()
+	}
+	property var refreshTimer: Timer {
+		id: refreshTimer
+		interval: 100
+		onTriggered: connectWeatherSource()
+	}
+	function connectWeatherSource() {
+		weatherDataSource.connectSource(weatherSource)
+	}
+	// onOberservationTimestampChanged: console.log(plasmoid.pluginName, 'oberservationTimestamp', oberservationTimestamp)
+
+
 	property var weatherDataSource: PlasmaCore.DataSource {
 		id: weatherDataSource
 		engine: "weather"
