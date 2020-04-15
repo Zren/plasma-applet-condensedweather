@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: simpleweather\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-condensedweather\n"
-"POT-Creation-Date: 2020-04-15 12:57-0400\n"
+"POT-Creation-Date: 2020-04-15 13:26-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -89,10 +89,10 @@ msgctxt "Use default font"
 msgid "Default"
 msgstr ""
 
-#: ../contents/ui/main.qml
-msgid "Refresh"
+#: ../contents/ui/lib/weather/WeatherData.qml
+msgid "Wind:"
 msgstr ""
 
-#: ../contents/ui/WeatherData.qml
-msgid "Wind:"
+#: ../contents/ui/main.qml
+msgid "Refresh"
 msgstr ""
