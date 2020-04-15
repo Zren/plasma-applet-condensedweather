@@ -99,7 +99,7 @@ msgstr ""
 
 #: ../contents/ui/main.qml
 msgid "Refresh"
-msgstr ""
+msgstr "Verversen"
 
 #~ msgid "Show background around each day"
 #~ msgstr "Dagen voorzien van achtergrondkleur"
