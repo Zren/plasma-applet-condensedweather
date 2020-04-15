@@ -111,7 +111,7 @@ GridLayout {
 						readonly property var value: modelData.tempHigh
 
 						readonly property bool hasValue: !isNaN(value)
-						text: hasValue ? i18n("%1°", value) : ""
+						text: hasValue ? weatherData.formatTempShort(value) : ""
 						visible: hasValue
 						font.pixelSize: dailyForecastView.minMaxFontSize
 						Layout.alignment: Qt.AlignHCenter
@@ -122,7 +122,7 @@ GridLayout {
 						opacity: forecastLayout.fadedOpacity
 
 						readonly property bool hasValue: !isNaN(value)
-						text: hasValue ? i18n("%1°", value) : ""
+						text: hasValue ? weatherData.formatTempShort(value) : ""
 						visible: hasValue
 						font.pixelSize: dailyForecastView.minMaxFontSize
 						Layout.alignment: Qt.AlignHCenter

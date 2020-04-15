@@ -291,6 +291,9 @@ QtObject {
 		}
 		return text
 	}
+	function formatTempShort(value) {
+		return formatTemp(value, true, true)
+	}
 
 	function getDetailsItemAndUnits(valueKey, reportUnitKey) {
 		var reportUnit = data[reportUnitKey] || invalidUnit

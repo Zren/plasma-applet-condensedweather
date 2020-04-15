@@ -56,7 +56,7 @@ RowLayout {
 				font.pixelSize: currentWeatherView.tempFontSize
 				readonly property var value: weatherData.currentTemp
 				readonly property bool hasValue: !isNaN(value)
-				text: hasValue ? weatherData.formatTemp(value, true, true) : ""
+				text: hasValue ? weatherData.formatTempShort(value) : ""
 
 				// Rectangle { border.color: "#f00"; color: "transparent"; border.width: 1; anchors.fill: parent; }
 			}
