@@ -61,7 +61,7 @@ GridLayout {
 			property alias frame: frame
 
 			visible: {
-				if (dailyForecastView.showNumDayItems == 0) { // Show all
+				if (dailyForecastView.showNumDays == 0) { // Show all
 					return true
 				} else {
 					return (index+1) <= dailyForecastView.showNumDayItems
