@@ -100,6 +100,3 @@ msgstr "Wind:"
 #: ../contents/ui/main.qml
 msgid "Refresh"
 msgstr "Verversen"
-
-#~ msgid "Show background around each day"
-#~ msgstr "Dagen voorzien van achtergrondkleur"
