@@ -1,3 +1,9 @@
+## v4 - May 6 2020
+
+* Fix showNumDays=0 for showing all data.
+* Update a few common files, and move libweather files around.
+* Update Dutch translations by @Vistaus (Pull Request #3)
+
 ## v3 - April 15 2020
 
 * Support changing units (eg: Celsius to Fahrenheit) (https://github.com/Zren/plasma-applet-simpleweather/issues/15)
