@@ -6,7 +6,7 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.kirigami 2.3 as Kirigami
 
 import "../lib"
-import "../lib/weather"
+import "../libweather"
 
 ConfigPage {
 	id: page
