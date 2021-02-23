@@ -227,10 +227,6 @@ QtObject {
 				break
 			}
 			var tokens = parseForecast(i)
-			if (typeof data["Short Forecast Day " + i] === "undefined") {
-				// "Total Weather Days" can be "7", however there might not be a "Short Forecast Day 6"
-				break
-			}
 			var item = {
 				dayLabel: tokens[0],
 				forecastIcon: existingWeatherIconName(tokens[1]),
