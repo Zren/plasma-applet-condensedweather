@@ -2,7 +2,7 @@ import QtQuick 2.0
 import QtQuick.Controls 2.0 as QQC2
 import QtQuick.Layouts 1.0
 import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.kirigami 2.3 as Kirigami
+import org.kde.kirigami 2.5 as Kirigami
 
 import "../lib"
 import "../libweather"
@@ -138,27 +138,25 @@ Kirigami.FormLayout {
 		Kirigami.FormData.isSection: true
 	}
 
-	ConfigColor {
+	LibConfig.ColorField {
 		Kirigami.FormData.label: i18n("Text:")
 		configKey: "textColor"
 		defaultColor: PlasmaCore.Theme.textColor
-		label: ""
 	}
 
-	ConfigColor {
-		Kirigami.FormData.label: i18n("Outline:")
-		configKey: "outlineColor"
-		defaultColor: PlasmaCore.Theme.backgroundColor
-		label: ""
 
-		property string checkedConfigKey: "showOutline"
-		Kirigami.FormData.checkable: true
-		Kirigami.FormData.checked: checkedConfigKey ? plasmoid.configuration[checkedConfigKey] : false
-		Kirigami.FormData.onCheckedChanged: {
-			if (checkedConfigKey) {
-				plasmoid.configuration[checkedConfigKey] = Kirigami.FormData.checked
-			}
+	RowLayout {
+		Kirigami.FormData.label: i18n("Outline:")
+		Layout.fillWidth: true
+		LibConfig.CheckBox {
+			id: showOutline
+			configKey: "showOutline"
 		}
-		enabled: Kirigami.FormData.checked
+		LibConfig.ColorField {
+			Layout.fillWidth: true
+			configKey: "outlineColor"
+			defaultColor: PlasmaCore.Theme.backgroundColor
+			enabled: showOutline.checked
+		}
 	}
 }
