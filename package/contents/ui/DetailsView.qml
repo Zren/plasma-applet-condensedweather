@@ -1,24 +1,22 @@
 import QtQuick 2.9
-
 import QtQuick.Layouts 1.3
-
-import org.kde.plasma.components 3.0 as PlasmaComponents
+import org.kde.plasma.core 2.0 as PlasmaCore
 
 ColumnLayout {
 	id: detailsView
-	spacing: units.smallSpacing
+	spacing: PlasmaCore.Units.smallSpacing
 
 	property var model
 
 	//--- Settings
-	readonly property int detailsFontSize: plasmoid.configuration.detailsFontSize * units.devicePixelRatio
+	readonly property int detailsFontSize: plasmoid.configuration.detailsFontSize * PlasmaCore.Units.devicePixelRatio
 
 	//--- Layout
 	// The details grid code is from org.kde.plasma.weather
 	GridLayout {
 		Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
 
-		rowSpacing: units.smallSpacing
+		rowSpacing: PlasmaCore.Units.smallSpacing
 
 		Repeater {
 			id: labelRepeater

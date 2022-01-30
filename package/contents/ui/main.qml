@@ -2,7 +2,7 @@ import QtQuick 2.7
 import QtQuick.Layouts 1.1
 import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.components 2.0 as PlasmaComponents
+import org.kde.plasma.components 3.0 as PlasmaComponents3
 
 import org.kde.plasma.private.weather 1.0 as WeatherPlugin
 
@@ -23,12 +23,12 @@ Item {
 		Plasmoid.backgroundHints: isDesktopContainment && !plasmoid.configuration.showBackground ? PlasmaCore.Types.NoBackground : PlasmaCore.Types.DefaultBackground
 
 		property Item contentItem: weatherData.needsConfiguring ? configureButton : forecastLayout
-		Layout.preferredWidth: 400 * units.devicePixelRatio
-		Layout.preferredHeight: 200 * units.devicePixelRatio
+		Layout.preferredWidth: 400 * PlasmaCore.Units.devicePixelRatio
+		Layout.preferredHeight: 200 * PlasmaCore.Units.devicePixelRatio
 		width: Layout.preferredWidth
 		height: Layout.preferredHeight
 
-		PlasmaComponents.Button {
+		PlasmaComponents3.Button {
 			id: configureButton
 			anchors.centerIn: parent
 			visible: weatherData.needsConfiguring
