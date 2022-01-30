@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.0 as QQC2
 import QtQuick.Layouts 1.0
+import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.kirigami 2.3 as Kirigami
 
 import "../lib"
@@ -33,7 +34,7 @@ Kirigami.FormLayout {
 
 	RowLayout {
 		Item {
-			implicitWidth: units.largeSpacing
+			implicitWidth: Kirigami.Units.largeSpacing
 		}
 		ConfigCheckBox {
 			configKey: "showWarnings"
@@ -136,14 +137,14 @@ Kirigami.FormLayout {
 	ConfigColor {
 		Kirigami.FormData.label: i18n("Text:")
 		configKey: "textColor"
-		defaultColor: theme.textColor
+		defaultColor: PlasmaCore.Theme.textColor
 		label: ""
 	}
 
 	ConfigColor {
 		Kirigami.FormData.label: i18n("Outline:")
 		configKey: "outlineColor"
-		defaultColor: theme.backgroundColor
+		defaultColor: PlasmaCore.Theme.backgroundColor
 		label: ""
 
 		property string checkedConfigKey: "showOutline"
