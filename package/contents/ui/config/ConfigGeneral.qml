@@ -1,7 +1,6 @@
 import QtQuick 2.0
-import QtQuick.Controls 1.0
+import QtQuick.Controls 2.0 as QQC2
 import QtQuick.Layouts 1.0
-import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.kirigami 2.3 as Kirigami
 
 import "../lib"
@@ -79,7 +78,7 @@ ConfigPage {
 				implicitWidth: showingAllLabel.implicitWidth + showingAllLabel.anchors.margins*2
 				implicitHeight: showingAllLabel.implicitHeight + showingAllLabel.anchors.margins*2
 
-				Label {
+				QQC2.Label {
 					id: showingAllLabel
 					anchors.fill: parent
 					anchors.margins: 4 * Kirigami.Units.devicePixelRatio
