@@ -5,16 +5,16 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.kirigami 2.5 as Kirigami
 
 import "../lib"
-import "../libweather"
+import "../libweather" as LibWeather
 import "../libconfig" as LibConfig
 
 Kirigami.FormLayout {
 	Layout.fillWidth: true
 
-	ConfigWeatherStationPicker {
+	LibWeather.ConfigWeatherStationPicker {
 		configKey: 'source'
 	}
-	WeatherStationCredits {
+	LibWeather.WeatherStationCredits {
 		id: weatherStationCredits
 	}
 
