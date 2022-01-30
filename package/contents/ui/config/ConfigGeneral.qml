@@ -96,10 +96,10 @@ Kirigami.FormLayout {
 
 	RowLayout {
 		Kirigami.FormData.label: i18n("Font Family:")
-		ConfigFontFamily {
+		LibConfig.FontFamily {
 			configKey: 'fontFamily'
 		}
-		ConfigTextFormat {
+		LibConfig.TextFormat {
 			boldConfigKey: 'bold'
 		}
 	}
