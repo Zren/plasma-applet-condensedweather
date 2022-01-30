@@ -1,7 +1,8 @@
-// Version 3
+// Version 4
 // Based On: https://invent.kde.org/plasma/kdeplasma-addons/-/blame/master/applets/weather/package/contents/ui/config/WeatherStationPicker.qml
 
 /*
+ * SPDX-FileCopyrightText: 2022 Chris Holland <zrenfire@gmail.com>
  * SPDX-FileCopyrightText: 2016, 2018 Friedrich W. H. Kossebau <kossebau@kde.org>
  *
  * SPDX-License-Identifier: GPL-2.0-or-later
@@ -11,6 +12,8 @@ import QtQuick 2.9
 
 import QtQuick.Controls 2.5 as QQC2
 import QtQuick.Layouts 1.3
+
+import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.kirigami 2.8 as Kirigami
 
 import org.kde.plasma.private.weather 1.0 as WeatherPlugin
@@ -19,9 +22,23 @@ import org.kde.plasma.private.weather 1.0 as WeatherPlugin
 ColumnLayout {
 	id: root
 
-	property alias selectedServices: serviceListModel.selectedServices
+	// Use weather dataengine to list weather providers instead of plasmoid.nativeInterface.providers
+	property alias providers: weatherDataSource.ionServiceList
+	readonly property bool hasProviders: providers.length > 0
+	property var weatherDataSource: PlasmaCore.DataSource {
+		id: weatherDataSource
+		engine: "weather"
+		connectedSources: ['ions']
+
+		// {"bbcukmet":"BBC Weather|bbcukmet","envcan":"Environment Canada|envcan","noaa":"NOAA's National Weather Service|noaa","wettercom":"wetter.com|wettercom"}
+		readonly property var ions: data['ions']
+		readonly property var ionServiceList: ions ? Object.keys(ions) : []
+		// onIonsChanged: console.log('ions', JSON.stringify(ions))
+		// onIonServiceListChanged: console.log('ionServiceList', JSON.stringify(ionServiceList))
+	}
+
 	property string source
-	readonly property bool canSearch: !!searchStringEdit.text && selectedServices.length
+	readonly property bool canSearch: !!searchStringEdit.text && hasProviders
 
 	function searchLocation() {
 		if (!canSearch) {
@@ -29,7 +46,7 @@ ColumnLayout {
 		}
 		noSearchResultReport.visible = false;
 		source = "";
-		locationListModel.searchLocations(searchStringEdit.text, selectedServices);
+		locationListModel.searchLocations(searchStringEdit.text, root.providers);
 	}
 
 	WeatherPlugin.LocationListModel {
@@ -47,35 +64,10 @@ ColumnLayout {
 		}
 	}
 
-	WeatherPlugin.ServiceListModel {
-		id: serviceListModel
-	}
-
-	Kirigami.FormLayout {
-		ColumnLayout {
-			Kirigami.FormData.label: i18nd("plasma_applet_org.kde.plasma.weather", "Weather providers:")
-			Kirigami.FormData.buddyFor: calendarPluginsRepeater.itemAt(0)
-
-			Repeater {
-				id: calendarPluginsRepeater
-				model: serviceListModel
-				delegate: QQC2.CheckBox {
-					text: model.display
-					checked: model.checked
-					onToggled: {
-						model.checked = checked;
-						checked = Qt.binding(function() { return model.checked; });
-						// weatherStationConfigPage.configurationChanged();
-					}
-				}
-			}
-		}
-	}
-
 	RowLayout {
 		Layout.fillWidth: true
 
-		enabled: selectedServices.length > 0
+		enabled: root.hasProviders
 
 		Kirigami.SearchField {
 			id: searchStringEdit
@@ -119,7 +111,7 @@ ColumnLayout {
 		Layout.fillWidth: true
 		Layout.fillHeight: true
 
-		enabled: selectedServices.length > 0
+		enabled: root.hasProviders
 
 		Component.onCompleted: {
 			background.visible = true;

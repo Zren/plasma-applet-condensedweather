@@ -31,7 +31,7 @@ Window {
 	title: i18ndc("plasma_applet_org.kde.plasma.weather", "@title:window", "Select Weather Station")
 	color: syspal.window
 
-	property alias selectedServices : stationPicker.selectedServices
+	property alias providers: stationPicker.providers
 	property alias source: stationPicker.source
 
 	signal accepted
