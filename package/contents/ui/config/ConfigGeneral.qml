@@ -6,6 +6,7 @@ import org.kde.kirigami 2.3 as Kirigami
 
 import "../lib"
 import "../libweather"
+import "../libconfig" as LibConfig
 
 Kirigami.FormLayout {
 	Layout.fillWidth: true
@@ -17,16 +18,16 @@ Kirigami.FormLayout {
 		id: weatherStationCredits
 	}
 
-	ConfigSpinBox {
+	LibConfig.SpinBox {
 		Kirigami.FormData.label: i18ndc("plasma_applet_org.kde.plasma.weather", "@label:spinbox", "Update every:")
 		configKey: "updateInterval"
 		suffix: i18ndc("plasma_applet_org.kde.plasma.weather", "@item:valuesuffix spacing to number + unit (minutes)", " min")
 		stepSize: 5
-		minimumValue: 30
-		maximumValue: 3600
+		from: 30
+		to: 3600
 	}
 
-	ConfigCheckBox {
+	LibConfig.CheckBox {
 		id: showDetails
 		configKey: "showDetails"
 		text: i18n("Show weather details")
@@ -36,32 +37,35 @@ Kirigami.FormLayout {
 		Item {
 			implicitWidth: Kirigami.Units.largeSpacing
 		}
-		ConfigCheckBox {
+		LibConfig.CheckBox {
 			configKey: "showWarnings"
 			text: i18n("Show weather warnings")
 			enabled: showDetails.checked
 		}
 	}
 
-	ConfigCheckBox {
+	LibConfig.CheckBox {
 		configKey: "showBackground"
 		text: i18n("Desktop Widget: Show background")
 	}
 
-	// ConfigCheckBox {
+	// LibConfig.CheckBox {
 	// 	configKey: "showDailyBackground"
 	// 	text: i18n("Show background around each day")
 	// }
 
-	ConfigSpinBox {
-		id: showNumDays
+	RowLayout {
 		Kirigami.FormData.label: i18n("Days Visible:")
-		configKey: "showNumDays"
-		stepSize: 1
-		minimumValue: 0
-		maximumValue: 14
-		
-		readonly property bool isShowingAll: showNumDays.configValue == 0
+
+		LibConfig.SpinBox {
+			id: showNumDays
+			configKey: "showNumDays"
+			stepSize: 1
+			from: 0
+			to: 14
+			
+			readonly property bool isShowingAll: showNumDays.configValue == 0
+		}
 
 		SystemPalette {
 			id: syspal
@@ -100,31 +104,31 @@ Kirigami.FormLayout {
 		}
 	}
 
-	ConfigSpinBox {
+	LibConfig.SpinBox {
 		Kirigami.FormData.label: i18n("Forecast:")
 		configKey: "forecastFontSize"
 		suffix: i18nc("font size suffix", "pt")
 	}
 
-	ConfigSpinBox {
+	LibConfig.SpinBox {
 		Kirigami.FormData.label: i18n("Temp:")
 		configKey: "tempFontSize"
 		suffix: i18nc("font size suffix", "pt")
 	}
 
-	ConfigSpinBox {
+	LibConfig.SpinBox {
 		Kirigami.FormData.label: i18n("Date:")
 		configKey: "dateFontSize"
 		suffix: i18nc("font size suffix", "pt")
 	}
 
-	ConfigSpinBox {
+	LibConfig.SpinBox {
 		Kirigami.FormData.label: i18n("Min/Max Temp:")
 		configKey: "minMaxFontSize"
 		suffix: i18nc("font size suffix", "pt")
 	}
 
-	ConfigSpinBox {
+	LibConfig.SpinBox {
 		Kirigami.FormData.label: i18n("Details:")
 		configKey: "detailsFontSize"
 		suffix: i18nc("font size suffix", "pt")
