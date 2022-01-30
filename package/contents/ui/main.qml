@@ -32,7 +32,7 @@ Item {
 			id: configureButton
 			anchors.centerIn: parent
 			visible: weatherData.needsConfiguring
-			text: i18ndc("plasma_applet_org.kde.plasma.weather", "@action:button", "Configure...")
+			text: i18nd("plasma_applet_org.kde.plasma.weather", "Set location…")
 			onClicked: plasmoid.action("configure").trigger()
 			Layout.minimumWidth: implicitWidth
 			Layout.minimumHeight: implicitHeight
