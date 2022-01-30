@@ -35,7 +35,7 @@ Kirigami.FormLayout {
 
 	RowLayout {
 		Item {
-			implicitWidth: Kirigami.Units.largeSpacing
+			implicitWidth: Kirigami.Units.largeSpacing * 2
 		}
 		LibConfig.CheckBox {
 			configKey: "showWarnings"
