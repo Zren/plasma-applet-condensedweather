@@ -4,7 +4,6 @@ import QtQuick.Layouts 1.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.kirigami 2.5 as Kirigami
 
-import "../lib"
 import "../libweather" as LibWeather
 import "../libconfig" as LibConfig
 
