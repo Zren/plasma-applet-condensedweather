@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: simpleweather\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-"
 "condensedweather\n"
-"POT-Creation-Date: 2021-12-09 23:12-0500\n"
+"POT-Creation-Date: 2022-02-01 01:59-0500\n"
 "PO-Revision-Date: 2020-04-23 17:16+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <vistausss@outlook.com>\n"
@@ -92,11 +92,7 @@ msgstr "Contour:"
 msgid "Updated at %1"
 msgstr "Bijgewerkt om %1"
 
-#: ../contents/ui/lib/AppletVersion.qml
-msgid "<b>Version:</b> %1"
-msgstr "<b>Versie:</b> %1"
-
-#: ../contents/ui/lib/ConfigFontFamily.qml
+#: ../contents/ui/libconfig/FontFamily.qml
 msgctxt "Use default font"
 msgid "Default"
 msgstr "Standaard"
@@ -108,3 +104,6 @@ msgstr "Wind:"
 #: ../contents/ui/main.qml
 msgid "Refresh"
 msgstr "Verversen"
+
+#~ msgid "<b>Version:</b> %1"
+#~ msgstr "<b>Versie:</b> %1"
