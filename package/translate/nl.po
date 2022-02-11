@@ -104,6 +104,3 @@ msgstr "Wind:"
 #: ../contents/ui/main.qml
 msgid "Refresh"
 msgstr "Verversen"
-
-#~ msgid "<b>Version:</b> %1"
-#~ msgstr "<b>Versie:</b> %1"

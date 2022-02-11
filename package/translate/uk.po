@@ -100,6 +100,3 @@ msgstr ""
 #: ../contents/ui/main.qml
 msgid "Refresh"
 msgstr "Оновити"
-
-#~ msgid "<b>Version:</b> %1"
-#~ msgstr "<b>Версія:</b> %1"
