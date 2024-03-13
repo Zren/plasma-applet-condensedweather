@@ -1,5 +1,5 @@
 # Translation of condensedweather in LANGUAGE
-# Copyright (C) 2022
+# Copyright (C) 2024
 # This file is distributed under the same license as the condensedweather package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: condensedweather\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-condensedweather\n"
-"POT-Creation-Date: 2022-02-01 01:59-0500\n"
+"POT-Creation-Date: 2024-03-13 03:24-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../metadata.desktop
+#: ../metadata.json
 msgid "Condensed Weather"
 msgstr ""
 
-#: ../metadata.desktop
+#: ../metadata.json
 msgid "Current and Daily Weather Forecast"
 msgstr ""
 
