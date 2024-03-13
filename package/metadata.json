@@ -14,7 +14,7 @@
 		"Id": "com.github.zren.condensedweather",
 		"Name": "Condensed Weather",
 		"Name[nl]": "Eenvoudige weersvoorspelling",
-		"Version": "5",
+		"Version": "6",
 		"Website": "https://github.com/Zren/plasma-applet-condensedweather"
 	},
 	"X-Plasma-API-Minimum-Version": "6.0"
