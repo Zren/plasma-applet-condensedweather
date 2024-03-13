@@ -1,0 +1,21 @@
+{
+	"KPackageStructure": "Plasma/Applet",
+	"KPlugin": {
+		"Authors": [
+			{
+				"Email": "zrenfire@gmail.com",
+				"Name": "Chris Holland"
+			}
+		],
+		"Category": "Environment and Weather",
+		"Description": "Current and Daily Weather Forecast",
+		"Description[nl]": "Huidig en dagelijks weerbericht",
+		"Icon": "weather-clear",
+		"Id": "com.github.zren.condensedweather",
+		"Name": "Condensed Weather",
+		"Name[nl]": "Eenvoudige weersvoorspelling",
+		"Version": "5",
+		"Website": "https://github.com/Zren/plasma-applet-condensedweather"
+	},
+	"X-Plasma-API-Minimum-Version": "6.0"
+}
