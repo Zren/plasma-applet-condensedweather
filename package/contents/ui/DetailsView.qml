@@ -1,22 +1,23 @@
-import QtQuick 2.9
-import QtQuick.Layouts 1.3
-import org.kde.plasma.core 2.0 as PlasmaCore
+import org.kde.kirigami as Kirigami
+import QtQuick
+import QtQuick.Layouts
+import org.kde.plasma.core as PlasmaCore
 
 ColumnLayout {
 	id: detailsView
-	spacing: PlasmaCore.Units.smallSpacing
+	spacing: Kirigami.Units.smallSpacing
 
 	property var model
 
 	//--- Settings
-	readonly property int detailsFontSize: plasmoid.configuration.detailsFontSize * PlasmaCore.Units.devicePixelRatio
+	readonly property int detailsFontSize: plasmoid.configuration.detailsFontSize * Screen.devicePixelRatio
 
 	//--- Layout
 	// The details grid code is from org.kde.plasma.weather
 	GridLayout {
 		Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
 
-		rowSpacing: PlasmaCore.Units.smallSpacing
+		rowSpacing: Kirigami.Units.smallSpacing
 
 		Repeater {
 			id: labelRepeater

@@ -1,16 +1,17 @@
-import QtQuick 2.7
-import QtQuick.Layouts 1.1
-import org.kde.plasma.core 2.0 as PlasmaCore
+import QtQuick
+import QtQuick.Layouts
+import org.kde.kirigami as Kirigami
+import org.kde.plasma.core as PlasmaCore
 
 RowLayout {
 	id: currentWeatherView
 
 	//--- Settings
-	readonly property int forecastFontSize: plasmoid.configuration.forecastFontSize * PlasmaCore.Units.devicePixelRatio
-	readonly property int tempFontSize: plasmoid.configuration.tempFontSize * PlasmaCore.Units.devicePixelRatio
+	readonly property int forecastFontSize: plasmoid.configuration.forecastFontSize * Screen.devicePixelRatio
+	readonly property int tempFontSize: plasmoid.configuration.tempFontSize * Screen.devicePixelRatio
 
 	//--- Layout
-	PlasmaCore.IconItem {
+	Kirigami.Icon {
 		id: currentForecastIcon
 		Layout.fillHeight: true
 		Layout.minimumWidth: currentConditionsColumn.implicitHeight
@@ -28,7 +29,7 @@ RowLayout {
 		WLabel {
 			// Layout.minimumWidth: 0
 			Layout.fillWidth: true
-			Layout.preferredWidth: 160 * PlasmaCore.Units.devicePixelRatio
+			Layout.preferredWidth: 160 * Screen.devicePixelRatio
 			id: currentConditionsLabel
 			text: weatherData.todaysForecastLabel
 			font.pixelSize: currentWeatherView.forecastFontSize
